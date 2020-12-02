@@ -90,7 +90,7 @@ class ProductController extends Controller
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Task Updated!' : 'Error Updating Task'
+            'message' => $status ? 'Product Updated!' : 'Error Updating Product'
         ]);
     }
 
