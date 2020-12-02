@@ -14,7 +14,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Products::all()->toArray());
     }
 
     /**
@@ -35,7 +35,20 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $products = Products::create([
+            'category_id' => $request->category_id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'user_id' => $request->user_id,
+            'pro_photo' => $request->pro_photo,
+        ]);
+        $data = [
+            'data' => $products,
+            'status' => (bool) $products,
+            'message' => $products ? 'Product! Created' : 'Error Creating Product',
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -46,7 +59,7 @@ class ProductsController extends Controller
      */
     public function show(Products $products)
     {
-        //
+        return response()->json($products);
     }
 
     /**

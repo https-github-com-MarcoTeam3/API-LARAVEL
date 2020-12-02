@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Category::all()->toArray());
     }
 
     /**
@@ -35,7 +35,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->only('name'));
+
+        return response()->json([
+            'status' => (bool) $category,
+            'message'=> $category ? 'Category Created' : 'Error Creating Category'
+        ]);
     }
 
     /**
@@ -46,7 +51,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return response()->json($category);
     }
 
     /**
