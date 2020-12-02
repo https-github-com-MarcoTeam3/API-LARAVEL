@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Products;
 use Illuminate\Http\Request;
 
-class ProductsController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -57,9 +57,11 @@ class ProductsController extends Controller
      * @param  \App\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function show(Products $products)
+    public function show($id)
     {
-        return response()->json($products);
+        
+        return response()->json(Products::findOrFail($id));
+        
     }
 
     /**
@@ -82,7 +84,14 @@ class ProductsController extends Controller
      */
     public function update(Request $request, Products $products)
     {
-        //
+        $status = $products->update(
+            $request->only(['title', 'category_id', 'user_id', 'descritpion', 'price', 'pro_photo'])
+        );
+
+        return response()->json([
+            'status' => $status,
+            'message' => $status ? 'Task Updated!' : 'Error Updating Task'
+        ]);
     }
 
     /**
@@ -93,6 +102,11 @@ class ProductsController extends Controller
      */
     public function destroy(Products $products)
     {
-        //
+        $status = $products->delete();
+
+            return response()->json([
+                'status' => $status,
+                'message' => $status ? 'Task Deleted!' : 'Error Deleting Task'
+            ]);
     }
 }

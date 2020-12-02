@@ -24,7 +24,8 @@ Route::post('/register', 'RegisterController@register');
 Route::post('/logout', 'LoginController@logout')->middleware('auth:api');
 
 //routes to products
-Route::get('/products/{product_id}', 'ProductsController@products');
+Route::resource('/products', ProductController::class);
+
+//routes to category
 Route::get('/category/{category}/products', 'CategoryController@products');
-Route::resource('/products', 'ProductsController');
 Route::resource('/category', 'CategoryController');
