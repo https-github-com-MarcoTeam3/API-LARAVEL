@@ -1,4 +1,4 @@
-[![forthebadge](https://forthebadge.com/images/badges/made-with-laravel.svg)](https://forthebadge.com)
+
 
 
 # SGMLUXURY **CODING ACADEMY**
