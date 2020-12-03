@@ -22,10 +22,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/login', 'LoginController@login');
 Route::post('/register', 'RegisterController@register');
 Route::post('/logout', 'LoginController@logout')->middleware('auth:api');
+Route::resource('/user', UserController::class);
 
 //routes to products
 Route::resource('/products', ProductController::class);
 
 //routes to category
 Route::get('/category/{category}/products', 'CategoryController@products');
-Route::resource('/category', 'CategoryController');
+Route::resource('/category', CategoryController::class);

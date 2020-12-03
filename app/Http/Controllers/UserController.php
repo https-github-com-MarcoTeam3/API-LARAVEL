@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Products;
+use App\User;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return response()->json(Products::all()->toArray());
+        
     }
 
     /**
@@ -35,18 +35,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $products = Products::create([
-            'category_id' => $request->category_id,
-            'title' => $request->title,
-            'description' => $request->description,
-            'price' => $request->price,
-            'user_id' => $request->user_id,
-            'pro_photo' => $request->pro_photo,
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
         ]);
         $data = [
-            'data' => $products,
-            'status' => (bool) $products,
-            'message' => $products ? 'Product! Created' : 'Error Creating Product',
+            'data' => $user,
+            'status' => (bool) $user,
+            'message' => $user ? 'User! Created' : 'Error Creating User',
         ];
         return response()->json($data);
     }
@@ -54,23 +50,23 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Products  $products
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         
-        return response()->json(Products::findOrFail($id));
+        return response()->json(User::findOrFail($id));
         
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Products  $products
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Products $products)
+    public function edit(User $user)
     {
         //
     }
@@ -79,34 +75,34 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Products  $products
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, User $user)
     {
-        $status = $products->update(
-            $request->only(['title', 'category_id', 'user_id', 'descritpion', 'price', 'pro_photo'])
+        $status = $user->update(
+            $request->only(['name', 'email'])
         );
 
         return response()->json([
             'status' => $status,
-            'message' => $status ? 'Product Updated!' : 'Error Updating Product'
+            'message' => $status ? 'User Updated!' : 'Error Updating User'
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Products  $products
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy(User $user)
     {
-        $status = $products->delete();
+        $status = $user->delete();
 
             return response()->json([
                 'status' => $status,
-                'message' => $status ? 'Product Deleted!' : 'Error Deleting Product'
+                'message' => $status ? 'User Deleted!' : 'Error Deleting User'
             ]);
-    }
+    } 
 }
