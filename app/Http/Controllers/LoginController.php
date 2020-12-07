@@ -15,14 +15,14 @@ class LoginController extends Controller
              'email' => ['required', 'email'],
              'password' => ['required']
          ]);
-         //dump($request->email);
+
          $user = User::where('email', $request->email)->first();
 
-        // if (!$user || !Hash::check($request->password, $user->password)) {
-        //      throw ValidationException::withMessages([
-        //          'email' => ['The provided credentials are incorrect']
-        //      ]);
-        //  }
+        if (!$user) {
+             throw ValidationException::withMessages([
+                 'email' => ['The provided credentials are incorrect']
+             ]);
+         }
 
         // return $user->createToken('Auth Token')->accessToken;
     }
