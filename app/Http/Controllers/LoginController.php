@@ -15,7 +15,7 @@ class LoginController extends Controller
              'email' => ['required', 'email'],
              'password' => ['required']
          ]);
-         
+
          $user = User::where('email', $request->email)->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
@@ -24,7 +24,7 @@ class LoginController extends Controller
              ]);
          }
 
-        // return $user->createToken('Auth Token')->accessToken;
+         return $user->createToken('Auth Token')->accessToken;
     }
 
     public function logout(Request $request)
