@@ -11,20 +11,20 @@ class LoginController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
+        // $request->validate([
+        //     'email' => ['required', 'email'],
+        //     'password' => ['required']
+        // ]);
 
-        $user = User::where('email', $request->email)->first();
+        // $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect']
-            ]);
-        }
+        // if (!$user || !Hash::check($request->password, $user->password)) {
+        //     throw ValidationException::withMessages([
+        //         'email' => ['The provided credentials are incorrect']
+        //     ]);
+        // }
 
-        return $user->createToken('Auth Token')->accessToken;
+        // return $user->createToken('Auth Token')->accessToken;
     }
 
     public function logout(Request $request)
