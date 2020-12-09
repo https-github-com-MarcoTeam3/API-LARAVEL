@@ -82,6 +82,8 @@
             <div class="content">
                 <div class="title m-b-md">
                     SGM Inc. API 
+                </div>
+                <div>
                     <p>made with Laravel</p>
                 </div>
 
