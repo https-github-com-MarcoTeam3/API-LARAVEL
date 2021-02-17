@@ -1,7 +1,7 @@
 
 
 
-# SGMLUXURY **CODING ACADEMY**
+# SGMLUXURY **CODING ACADEMY EPITECH MONTPELLIER**
 
 <div><p><strong>Sharif - Gargani - Marco</strong></div>
 
